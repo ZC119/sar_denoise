@@ -13,7 +13,6 @@ def dncnn(input, is_training=True, output_channels=1):
     with tf.variable_scope('block17'):
         output = tf.layers.conv2d(output, output_channels, 3, padding='same')
     return input - output
-    #return tf.divide(input, output)
 
 
 class denoiser(object):
@@ -27,12 +26,6 @@ class denoiser(object):
         self.is_training = tf.placeholder(tf.bool, name='is_training')
         self.X = self.Y_ + tf.random_normal(shape=tf.shape(self.Y_), stddev=self.sigma / 255.0)  # noisy images     
 
-        # self.noise = tf.random_gamma(shape=tf.shape(self.Y_), alpha=sigma, beta=sigma)
-        
-        # self.noise = self.noise * tf.cast(tf.greater_equal(1.0, self.noise), dtype=tf.float32) + tf.cast(tf.greater_equal(self.noise, 1.0), dtype=tf.float32)
-
-        #self.X = self.Y_ * self.noise    # noisy images     
-        # self.X = self.Y_ + tf.truncated_normal(shape=tf.shape(self.Y_), stddev=self.sigma / 255.0)  # noisy images
         self.Y = dncnn(self.X, is_training=self.is_training)
         self.loss = (1.0 / batch_size) * tf.nn.l2_loss(self.Y_ - self.Y)
 

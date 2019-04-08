@@ -13,11 +13,11 @@ parser.add_argument('--lr', dest='lr', type=float, default=0.0002, help='initial
 parser.add_argument('--use_gpu', dest='use_gpu', type=int, default=1, help='gpu flag, 1 for GPU and 0 for CPU')
 parser.add_argument('--sigma', dest='sigma', type=int, default=25, help='noise level')
 parser.add_argument('--phase', dest='phase', default='train', help='train or test')
-parser.add_argument('--checkpoint_dir', dest='ckpt_dir', default='./checkpoint', help='models are saved here')
+parser.add_argument('--checkpoint_dir', dest='ckpt_dir', default='./checkpoint_demo', help='models are saved here')
 parser.add_argument('--sample_dir', dest='sample_dir', default='./sample', help='sample are saved here')
 parser.add_argument('--test_dir', dest='test_dir', default='./test', help='test sample are saved here')
 parser.add_argument('--eval_set', dest='eval_set', default='Set12', help='dataset for eval in training')
-parser.add_argument('--test_set', dest='test_set', default='BSD68', help='dataset for testing')
+parser.add_argument('--test_set', dest='test_set', default='Set12', help='dataset for testing')
 args = parser.parse_args()
 
 
